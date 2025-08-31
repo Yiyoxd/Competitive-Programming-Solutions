@@ -1,6 +1,4 @@
-# ============================
 # Compilados / binarios
-# ============================
 *.exe
 *.out
 *.o
@@ -12,37 +10,29 @@
 *.idb
 *.ilk
 
-# ============================
-# Directorios de compilación
-# ============================
-/build/
-/bin/
-/debug/
-/release/
-/dist/
-/out/
-/outputs/
-/output/
+# Directorios de build/outputs en CUALQUIER NIVEL
+**/build/
+**/bin/
+**/debug/
+**/release/
+**/dist/
+**/out/
+**/outputs/
+**/output/
 
-# ============================
-# Configuración de editores/IDEs
-# ============================
-.vscode/
-.idea/
-.vs/
+# Configuración de editores/IDEs en CUALQUIER NIVEL
+**/.vscode/
+**/.idea/
+**/.vs/
 *.code-workspace
 
-# ============================
 # Caches y temporales
-# ============================
 __pycache__/
 .cache/
 *.log
 *.tmp
 *.swp
 
-# ============================
 # Archivos de sistema
-# ============================
 .DS_Store
 Thumbs.db
