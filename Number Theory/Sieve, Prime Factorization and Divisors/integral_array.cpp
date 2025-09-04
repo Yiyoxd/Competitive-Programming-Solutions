@@ -25,6 +25,7 @@ void solve(const int n, int m) {
         }
     }
     
+    
     for (int num : arr) {
         vis[num] = false;
     }
