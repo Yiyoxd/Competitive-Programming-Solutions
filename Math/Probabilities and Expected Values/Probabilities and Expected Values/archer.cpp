@@ -10,17 +10,16 @@ int main() {
     int a, b, c, d;
     cin >> a >> b >> c >> d;
 
-    if (a == 1 && b == 1000 && c == 1 && d == 1000) {
-        
-    }
-
+    //if (a == 1 && b == 1000 && c == 1 && d == 1000) 
     const long double p = (((long double)a) / b), q = ((long double)c) / d;
     const long double notWinP = 1.0 - p, notWinQ = 1.0 - q, constP = notWinP * notWinQ;
     long double P = 1.0;
 
-    for (int i = 0; i < 1000000; i++) {
-        P = p + constP * P;
-    }
+    P = p / (q + p - p * q);
+    //this works
+    //for (int i = 0; i < 1000000; i++) {
+        //P = p + constP * P;
+    //}
 
     cout << P << endl;
 }
