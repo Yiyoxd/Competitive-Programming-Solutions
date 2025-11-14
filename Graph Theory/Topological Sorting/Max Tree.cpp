@@ -32,6 +32,7 @@ void solve() {
 
 }
 
+//https://codeforces.com/problemset/problem/2143/C
 int32_t main() {
     IO
     int t = 1;
