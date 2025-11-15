@@ -1,3 +1,7 @@
+//
+// Created by yiyoa on 14/11/2025.
+//
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
@@ -25,14 +29,46 @@ constexpr double EPS = 1e-9;
 const double PI = acos(-1.0);
 const vector<pii> DIR4 = {{-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
 
-void solve() {
+int modpow(int a, int e, int m) {
+    int r = 1;
+    while (e) {
+        if (e & 1) {
+            r = (r * a) % m;
+        }
+        a = (a * a) % m;
+        e >>= 1;
+    }
 
+    return r;
+}
+
+void solve() {
+    int n;
+    cin >> n;
+    vector<int> v(n);
+
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        cin >> v[i];
+        sum += v[i];
+    }
+
+    int P = 0, Q = n * (n - 1) / 2;
+    for (int i = 0; i < n; i++) {
+        sum -= v[i];
+        P = (P + (v[i] * (sum % MOD)) % MOD) % MOD;
+    }
+
+    //cout << P << " " << Q << endl;
+
+    int inv = modpow(Q % MOD, MOD - 2, MOD);
+    cout << (P % MOD) * (inv % MOD) % MOD << "\n";
 }
 
 int32_t main() {
     IO
     int t = 1;
-    //cin >> t;
+    cin >> t;
     while (t--) {
         solve();
     }

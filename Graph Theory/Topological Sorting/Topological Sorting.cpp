@@ -10,7 +10,7 @@ using namespace __gnu_pbds;
 #define pii pair<int, int>
 #define pll pair<ll, ll>
 #define all(x) (x).begin(), (x).end()
-#define pb push_back()
+#define pb push_back
 #define F first
 #define S second
 #define sz(x) (int)(x).size()
@@ -27,7 +27,7 @@ const vector<pii> DIR4 = {{-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
 vi ans;
 
 bool ok(vvi& g, vi& states, int node) {
-    if (states[node] == 2) {
+    if (states[node] == 2 || g[node].empty()) {
         return true;
     }
 
@@ -36,14 +36,17 @@ bool ok(vvi& g, vi& states, int node) {
     }
 
     states[node] = 1;
-    for (int nei : g[node]) {
+    vi v = g[node];
+    sort(v.begin(), v.end());
+    //reverse(v.begin(), v.end());
+    for (int nei : v) {
         if (!ok(g, states, nei)) {
             return false;
         }
     }
 
-    states[node] = 2;
     ans.push_back(node);
+    states[node] = 2;
     return true;
 }
 
@@ -52,30 +55,41 @@ void solve() {
     cin >> n >> m;
 
     vvi g(n + 1);
+    vi ind(n + 1, 0);
     while (m--) {
         int a, b;
         cin >> a >> b;
         g[a].push_back(b);
+        ind[b]++;
     }
 
-    for (vi& v : g) {
-        sort(v.begin(), v.end());
-    }
-
-    ans.reserve(n);
-    vi states(n + 1, 0);
+    priority_queue<int, vector<int>, greater<int>>q;
     for (int i = 1; i <= n; i++) {
-        if (!ok(g, states, i)) {
-            cout << "Sandro fails.\n";
-            return;
+        if (ind[i] == 0) {
+            q.push(i);
         }
     }
 
-    reverse(ans.begin(), ans.end());
+    while (!q.empty()) {
+        int top = q.top(); q.pop();
+        ans.push_back(top);
+
+        for (int to : g[top]) {
+            if (--ind[to] == 0) {
+                q.push(to);
+            }
+        }
+    }
+
+    if (ans.size() != n) {
+        cout << "Sandro fails.\n";
+        return;
+    }
+
     string out;
     out.reserve(n * 7);
     for (int num : ans) {
-        out += to_string(num) + ' ';
+        out += to_string(num) + " ";
     }
 
     out[out.size() - 1] = '\n';
