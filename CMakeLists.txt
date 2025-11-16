@@ -14,4 +14,5 @@ add_executable(untitled main.cpp
         "Math/Probabilities and Expected Values/Probabilities and Expected Values/Journey.cpp"
         "Graph Theory/Graph Traversal/Breadth First Search (BFS)/Maze.cpp"
         "Graph Theory/Graph Traversal/Breadth First Search (BFS)/Message Route.cpp"
-        "Graph Theory/Graph Traversal/Breadth First Search (BFS)/Labyrinth.cpp")
+        "Graph Theory/Graph Traversal/Breadth First Search (BFS)/Labyrinth.cpp"
+        "Graph Theory/Graph Traversal/Breadth First Search (BFS)/Cycle In Maze.cpp")
